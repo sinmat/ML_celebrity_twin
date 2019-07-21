@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "./celebrity-twin-backend"
+		},
+		{
+			"path": "./celebrity-twin-frontend"
+		},
+		{
+			"path": "./celebrity-twin-mobile"
+		},
+		{
+			"path": "./ml"
+		}
+	],
+	"settings": {}
+}
