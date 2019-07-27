@@ -13,7 +13,7 @@ class Header extends Component {
                         <hr className="my-4"></hr>
                         <p className="mb-0">Whenever you're ready upload your photo and wait for the magic to happen!</p>
                         <br/>
-                        <a className="btn btn-secondary btn-lg" href="#" role="button">Upload photo</a>
+                        <button className="btn btn-secondary btn-lg" href="" role="button">Upload photo</button>
                 </div>
             </div>
         </div>
