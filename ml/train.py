@@ -14,17 +14,16 @@ ALLOWED_EXTENSIONS = {'txt'}
 
 #Setting train model method
 #Trains a k-nearest neighbors classifier for face recognition
-def train(train_dir="./faces/train", model_save_path=None, n_neighbors=None, knn_algo='ball_tree', verbose=True):
+def train(train_dir="./faces/encode", model_save_path=None, n_neighbors=None, knn_algo='ball_tree', verbose=True):
     X = []
     y = []
 
-    encode_dir = "./faces/encode" 
     all_encodings_paths = []
     for class_dir in os.listdir(train_dir):
         if not os.path.isdir(os.path.join(train_dir, class_dir)):
             continue
 
-        for encoding_path in image_files_in_folder(os.path.join(encode_dir, class_dir)):
+        for encoding_path in image_files_in_folder(os.path.join(train_dir, class_dir)):
             if os.path.splitext(encoding_path)[1][1:] not in ALLOWED_EXTENSIONS:
                 continue
 
@@ -52,5 +51,5 @@ def train(train_dir="./faces/train", model_save_path=None, n_neighbors=None, knn
 
 if __name__ == "__main__":
     print("Training KNN classifier...")
-    classifier = train("./faces/train", model_save_path="trained_knn_model.clf", n_neighbors=5)
+    classifier = train("./faces/encode", model_save_path="trained_knn_model.clf", n_neighbors=3)
     print("Training complete!")
