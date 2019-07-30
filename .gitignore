@@ -2,3 +2,5 @@ ml/.ipynb_checkpoints/
 ml/trained_knn_model.clf
 .data
 backend/models/trained_knn_model.clf 
+ml/__pycache__
+ml/db.json

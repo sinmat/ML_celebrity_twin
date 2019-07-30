@@ -14,8 +14,7 @@ from flask import request
 from flask_cors import CORS
 from flask import Flask, request, redirect, url_for
 from werkzeug import secure_filename
-from flask.ext.sqlalchemy import SQLAlchemy
-
+from tinydb import TinyDB, Query
 
 UPLOAD_FOLDER = 'static/images/'
 ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg'])
@@ -23,8 +22,7 @@ ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg'])
 app = Flask(__name__)
 CORS(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/ml_celebrity_twin'
-db = SQLAlchemy(app)
+db = TinyDB('db.json')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS 
@@ -61,9 +59,6 @@ def match():
 
     result_dict["knn"] = knn    
 
-
-#     # Remove tmp image to preserve space
-    
     return result_dict
 
 ## Define KNN predict model function that takes in image as parameter and 
@@ -102,18 +97,26 @@ def knn_predict(img_path=None, model_path=None):
         are_matches.append(closest_distances[0][i])
 
     response["matches"] = []
+
     for pred, loc, rec in zip(knn_clf.predict(faces_encodings), X_face_locations, are_matches):
         if rec:
+            images = []
+            Match = Query()
+            for item in db.search(Match.id == pred):
+                images.append(item)
+
             response["matches"].append({
                 "match": pred,
                 "location": loc,
                 "distance": rec[0],
+                "images": images
             })
         else:
             response["matches"].append({
                 "match": "unknown",
                 "location": loc,
                 "distance": rec[0],
+                "images": []
             })
 
     return response
