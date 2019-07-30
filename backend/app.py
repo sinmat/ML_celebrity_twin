@@ -61,10 +61,8 @@ def match():
 
     result_dict["knn"] = knn    
 
-    #* Call SVM predict method
-    #* Assign data to result_dict
 
-    # Remove tmp image to preserve space
+#     # Remove tmp image to preserve space
     
     return result_dict
 
