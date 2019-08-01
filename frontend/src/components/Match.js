@@ -39,7 +39,7 @@ class Match extends Component {
                         </div>
                         <div className="col-lg-12 col-md-12 col-sm-12">
                             <div className="alert alert-secondary" role="alert">
-                                <h2 className="display-6 ">It's a {(1 - this.props.match.knn.matches[key].distance).toFixed(2)}% match!</h2>
+                                <h2 className="display-6 ">It's a {(1 - this.props.match.knn.matches[key].distance).toFixed(2)*100}% match!</h2>
                             </div>
                         </div>
                     </div>

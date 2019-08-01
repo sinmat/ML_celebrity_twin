@@ -8,21 +8,18 @@ from face_recognition.face_recognition_cli import image_files_in_folder
 import json
 import os
 import os.path
-from flask import Flask
-from flask import jsonify
-from flask import request
+from flask import Flask, jsonify, request, redirect, url_for
 from flask_cors import CORS
-from flask import Flask, request, redirect, url_for
 from werkzeug import secure_filename
 from tinydb import TinyDB, Query
 
 UPLOAD_FOLDER = 'static/images/'
 ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg'])
+db = TinyDB('db.json')
 
 app = Flask(__name__)
-CORS(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-db = TinyDB('db.json')
+CORS(app)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS 

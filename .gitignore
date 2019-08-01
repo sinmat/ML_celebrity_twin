@@ -4,3 +4,6 @@ ml/trained_knn_model.clf
 backend/models/trained_knn_model.clf 
 ml/__pycache__
 ml/db.json
+backend/static/images/*.jpg
+backend/static/images/*.jpeg
+backend/static/images/*.png
