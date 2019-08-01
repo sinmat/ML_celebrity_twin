@@ -106,14 +106,16 @@ def knn_predict(img_path=None, model_path=None):
                 "match": pred,
                 "location": loc,
                 "distance": rec[0],
-                "images": images
+                "images": images,
+                "index": 0,
             })
         else:
             response["matches"].append({
                 "match": "unknown",
                 "location": loc,
                 "distance": rec[0],
-                "images": []
+                "images": [],
+                "index": 0,
             })
 
     return response

@@ -3,7 +3,6 @@ import './App.css';
 import Footer from './components/Footer';
 import Match from './components/Match';
 import Header from './components/Header';
-import UploadedImage from './components/UploadedImage'
 
 class App extends Component {
   constructor(props) {
